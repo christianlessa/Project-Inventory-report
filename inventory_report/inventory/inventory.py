@@ -1,6 +1,7 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 import csv
+import json
 
 
 class Inventory:
@@ -12,6 +13,9 @@ class Inventory:
             with open(path) as files:
                 for index in csv.DictReader(files):
                     data.append(index)
+        elif path.endswith(".json"):
+            with open(path) as json_files:
+                data = json.load(json_files)
         return data
 
     @classmethod
